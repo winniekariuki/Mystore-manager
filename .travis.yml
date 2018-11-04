@@ -1,12 +1,16 @@
 language: python
 python:
-- "3.6"
+ - "3.6"
+cache: pip
+services:
+ - postgresql
 install:
-- pip install -r requirements.txt
+ - pip install -r requirements.txt
 before_script:
- - export SECRET_KEY="secret"
+ - psql -c 'create database teststore;' -U postgres
 script:
-- pytest -v -W error::UserWarning
-- coverage run --source=app -m pytest && coverage report
+ - pytest -v --cov=app
+after_script:
+ - coveralls 
 after_success:
 - coveralls
