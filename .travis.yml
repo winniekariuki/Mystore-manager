@@ -1,46 +1,46 @@
-# language: python
-# python:
-#  - "3.6"
-# cache: pip
-# services:
-#  - postgresql
-# install:
-#  - pip install -r requirements.txt
-# before_script:
-#  - psql -c 'create database teststore;' -U postgres
-# script:
-#  - pytest -v --cov=app
-# after_script:
-#  - coveralls 
-# after_success:
-# - coveralls
 language: python
-# python version
 python:
-  - 3.6
-
-before_install:
-
-  - 'pip install -U pip'
-
-install:
-  - pip install -r requirements.txt
-
+ - "3.6"
+cache: pip
 services:
-  # start postgres service
-  - postgresql
-
+ - postgresql
+install:
+ - pip install -r requirements.txt
 before_script:
-  # create a testing database for running tests
-  - psql -c 'create database teststore;' -U postgres
-
-  # set up env file to be use by the app
-  - cp .env.example .env
-
+ - psql -c 'create database teststore;' -U postgres
 script:
-  #  run tests
-  - coverage run --source=app -m pytest && coverage report
-
+ - pytest -v --cov=app
+after_script:
+ - coveralls 
 after_success:
-  # coverage report
-- coveralls 
+- coveralls
+# language: python
+# # python version
+# python:
+#   - 3.6
+
+# before_install:
+
+#   - 'pip install -U pip'
+
+# install:
+#   - pip install -r requirements.txt
+
+# services:
+#   # start postgres service
+#   - postgresql
+
+# before_script:
+#   # create a testing database for running tests
+#   - psql -c 'create database teststore;' -U postgres
+
+#   # set up env file to be use by the app
+#   - cp .env.example .env
+
+# script:
+#   #  run tests
+#   - coverage run --source=app -m pytest && coverage report
+
+# after_success:
+#   # coverage report
+# - coveralls 
