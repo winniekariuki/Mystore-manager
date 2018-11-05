@@ -29,7 +29,7 @@ class TestProducts(unittest.TestCase):
         
         users_data_storeattendant = json.dumps({
             "username": "Sammy",
-            "email":"sammy09@gmail.com",
+            "email":"sammy0fgh9@gmail.com",
             "password": "aS@1244",
             "role": "storeattendant"
 
@@ -41,7 +41,7 @@ class TestProducts(unittest.TestCase):
         })
         users_data_admin = json.dumps({
             "username": "Kip",
-            "email":"Kip9@gmail.com",
+            "email":"Kip9@hjkgmail.com",
             "password": "aS@1244",
             "role": "storeattendant"
 
@@ -69,7 +69,6 @@ class TestProducts(unittest.TestCase):
 
         self.login_attendant_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
-
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
         
@@ -84,7 +83,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgjhfkan",
-            "email":"morgjdfghjanghkhk1@gmail.com",
+            "email":"mordrf1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
