@@ -55,6 +55,7 @@ _Router used-'api/v2/sales/1' GET METHOD.</p>
   <p>To test if the tests pass you run the pytest command </p>
 </div>
 <div>
-  https://mystoremanagerapp.herokuapp.com/
+  https://mystoremanagerapp.herokuapp.com/</div>
+  <div>
   https://www.pivotaltracker.com/n/projects/2202841
  </div>
