@@ -1,5 +1,6 @@
 # Mystore-manager
 [![Build Status](https://travis-ci.org/winniekariuki/Mystore-manager.svg?branch=develop)](https://travis-ci.org/winniekariuki/Mystore-manager)
+[![Coverage Status](https://coveralls.io/repos/github/winniekariuki/Mystore-manager/badge.svg?branch=develop)](https://coveralls.io/github/winniekariuki/Mystore-manager?branch=develop)
 
 Store Manager is a web application that helps store owners manage sales and product inventory records. This application is meant for use in a single store.
 
