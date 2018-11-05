@@ -58,36 +58,21 @@ class TestProducts(unittest.TestCase):
             "quantity":"5"
         })
 
-
-
-        
-        # password = str(generate_password_hash("winnie07@"))
-        # login_data = json.dumps({
-        #     "username": "Winnie",
-        #     "password": password
-           
-
-        # })
         self.create_admin_user = self.test_client.post('api/v2/auth/signup', data=users_data_admin, 
                                                     content_type='application/json')
 
         self.login_admin_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
-        # print(self.login_admin_user.data)
-        # self.admin_token = json.loads(
-        #     self.login_admin_user.data.decode())
-        # print(self.admin_token)
 
-        self.create_storeattendant_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant, #headers={
-                                                    content_type='application/json') #access-token: self.admin_token["token"]})
+        self.create_storeattendant_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant, 
+                                                    content_type='application/json') 
 
         self.login_attendant_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
 
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
-        # self.create_product = self.test_client.post('api/v2/products', data=product_data, headers={
-        #                                             'content-type': 'application/json', 'access-token': self.admin_token["token"]})
+        
         self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
                                                   'content-type': 'application/json', 'access-token':self.storeattendant_token["token"]})
     def tearDown(self):
@@ -99,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgjhfkan",
-            "email":"morgjdfghjan1@gmail.com",
+            "email":"morgjdfghjanghkhk1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -129,21 +114,7 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    # def test_post_products(self):
-    #     data2 = json.dumps({
-    #         "name": "shbk",
-    #         "category":"Laptop",
-    #         "price": "25000",
-    #         "quantity":"10",
-    #         "lower_inventory":"5"
-    #     })
-
-
-    #     response = self.test_client.post('api/v2/products', data=data2, headers={
-    #                                      'content-type': 'application/json', 'access-token': self.admin_token["token"]})
-    #     print(response.data)
-    #     self.assertEqual(response.status_code, 201)
-
+    
     def test_password_lowercase(self):
         user = json.dumps({
             "username": "Harriet",
@@ -289,12 +260,7 @@ class TestProducts(unittest.TestCase):
                          ['message'], "User already exists")
         self.assertEqual(response.status_code, 406)
 
-    # # def test_get_sales(self):
-
-    # #     response = self.test_client.get(
-    # #         'api/v2/sales', headers={'content_type': 'application/json', 'access-token': self.admin_token})
-    # #     self.assertEqual(response.status_code, 200)
-
+    
     def test_post_sales(self):
 
         response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
@@ -303,13 +269,6 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
 
 
-   
-    # # def test_get_single_sales_admin(self):
-
-    # #     response = self.test_client.get(
-    # #         'api/v2/sales/1', headers={'content_type': 'application/json'), 'access-token': self.admin_token})
-
-    # #     self.assertEqual(response.status_code, 200)
 
     def test_get_single_sales_attendant(self):
 
