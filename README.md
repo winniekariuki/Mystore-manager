@@ -1,5 +1,5 @@
-# Challeng3
-[![Build Status](https://travis-ci.org/winniekariuki/Challeng3.svg?branch=master)](https://travis-ci.org/winniekariuki/Challeng3)
+# Mystore-manager
+[![Build Status](https://travis-ci.org/winniekariuki/Mystore-manager.svg?branch=develop)](https://travis-ci.org/winniekariuki/Mystore-manager)
 
 Store Manager is a web application that helps store owners manage sales and product inventory records. This application is meant for use in a single store.
 
@@ -41,7 +41,7 @@ _Router used-'api/v2/sales/1' GET METHOD.</p>
 <div><h2>Installation</h2>
   <ol>
      <li>Open a repo in github</li>
-     <li>Clone the repository into the local machine through the terminal by: git clone https://github.com/winniekariuki/Challenge3.git</li>
+     <li>Clone the repository into the local machine through the terminal by: git clone https://github.com/winniekariuki/Mystore-manager.git</li>
      <li>Create a virtual enviroment with the command $ virtualenv -p python3 env</li>
      <li>Activate the virtual enviroment with the command `Desktop/Challeng3/env/Scripts/activate`</li>
     <li>cd back into the Challeng3 where you include all your code related files.</li>
