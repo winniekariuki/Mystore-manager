@@ -83,15 +83,15 @@ class TestProducts(unittest.TestCase):
     def test_signup(self):
         
         user = json.dumps({
-            "username": "Morgjhfkan",
-            "email":"mordrsshgjjhvdfff1@gmail.com",
+            "username": "Morgwjwkjhfkan",
+            "email":"jeshgjjhvdfff1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
 
         response = self.test_client.post(
             '/api/v2/auth/signup', data=user, content_type='application/json')
-        self.assertEqual(response.status_code,406)
+        self.assertEqual(response.status_code,201)
 
     def test_login(self):
         login = json.dumps({
