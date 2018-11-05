@@ -84,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgwjwkjhfkan",
-            "email":"jeshg4ghf51@gmail.com",
+            "email":"jeshg4ghf1051@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -244,39 +244,9 @@ class TestProducts(unittest.TestCase):
                          ['message'], "Remove space")
         self.assertEqual(response.status_code, 400)
 
-    # def test_usernameexists(self):
-    #     users_data = json.dumps({
-    #                 "username": "winnie",
-    #                 "email":"aefg2@.com",
-    #                 "password": "aS@1234",
-    #                 "role": "Admin"
-
-    #             })
-    #     response = self.test_client.post("/api/v2/auth/signup", data=users_data,
-    #                                      headers={
-    #                                          'content-type': 'application/json'})
-        
-    #     self.assertEqual(json.loads(response.data)
-    #                      ['message'], "User already exists")
-    #     self.assertEqual(response.status_code, 403)
-
     
-    # def test_post_sales(self):
 
-    #     response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-    #                                      'content_type': 'application/json', 'access-token': self.storeattendant_token ["token"]})
-        
-    #     self.assertEqual(response.status_code, 400)
-
-
-
-    # def test_get_single_sales_attendant(self):
-
-    #     response = self.test_client.get('api/v2/sales/1', headers={
-    #                                     'content_type': 'application/json', 'access-token': self.storeattendant_token ["token"]})
-    #     print(response)
-
-    #     self.assertEqual(response.status_code, 403)
+   
     def test_email_lowercase(self):
         user = json.dumps({
             "username": "Harriet",
