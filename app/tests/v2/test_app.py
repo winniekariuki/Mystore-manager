@@ -84,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgjhfkan",
-            "email":"mordrssff1@gmail.com",
+            "email":"mordrsshgjjhvdfff1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
