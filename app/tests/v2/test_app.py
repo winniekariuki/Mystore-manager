@@ -84,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgwjwkjhfkan",
-            "email":"jeshgjjhvdfff1@gmail.com",
+            "email":"jeshg1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -95,7 +95,7 @@ class TestProducts(unittest.TestCase):
 
     def test_login(self):
         login = json.dumps({
-            "username": "Morgan",
+            "username": "Morgwjwkjhfkan",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
@@ -258,7 +258,7 @@ class TestProducts(unittest.TestCase):
         
         self.assertEqual(json.loads(response.data)
                          ['message'], "User already exists")
-        self.assertEqual(response.status_code, 406)
+        self.assertEqual(response.status_code, 403)
 
     
     def test_post_sales(self):
