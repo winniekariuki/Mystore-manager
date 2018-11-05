@@ -73,7 +73,8 @@ class TestProducts(unittest.TestCase):
             self.login_attendant_user.data.decode())
         
         self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-                                                  'content-type': 'application/json', 'access-token':self.storeattendant_token["token"]})
+                                                  'content-type': 'application/json', 'access-token':self.storeattendant_token})#["token"]})
+        
     def tearDown(self):
         destroy_tables()
 
@@ -83,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Morgjhfkan",
-            "email":"mordrf1@gmail.com",
+            "email":"mordrssff1@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -263,7 +264,7 @@ class TestProducts(unittest.TestCase):
     def test_post_sales(self):
 
         response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-                                         'content_type': 'application/json', 'access-token': self.storeattendant_token})
+                                         'content_type': 'application/json', 'access-token': self.storeattendant_token ["token"]})
         
         self.assertEqual(response.status_code, 400)
 
@@ -272,7 +273,7 @@ class TestProducts(unittest.TestCase):
     def test_get_single_sales_attendant(self):
 
         response = self.test_client.get('api/v2/sales/1', headers={
-                                        'content_type': 'application/json', 'access-token': self.storeattendant_token})
+                                        'content_type': 'application/json', 'access-token': self.storeattendant_token ["token"]})
         print(response)
 
         self.assertEqual(response.status_code, 403)
