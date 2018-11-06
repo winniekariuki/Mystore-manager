@@ -74,8 +74,8 @@ class TestProducts(unittest.TestCase):
         
         self.create_product = self.test_client.post('api/v2/products', data=product_data, headers={
                                                   'content-type': 'application/json','access_token':self.admin_token})
-        self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-                                                  'content-type': 'application/json', 'access_token':self.storeattendant_token["token"]})
+        # self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
+        #                                           'content-type': 'application/json', 'access_token':self.storeattendant_token["token"]})
         
     def tearDown(self):
         destroy_tables()
@@ -86,7 +86,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud8@gmail.com",
+            "email":"eliud5@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
