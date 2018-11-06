@@ -10,7 +10,6 @@ before_script:
  - psql -c 'create database teststore;' -U postgres
 script:
  - pytest
- - pytest --cov=app app/tests/v2
 after_script:
  - coveralls 
 after_success:
