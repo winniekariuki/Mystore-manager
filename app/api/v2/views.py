@@ -140,9 +140,9 @@ class Produce(Resource):
     
         name = data['name'].strip("")
         category = data['category'].strip("")
-        price = data['price'].strip("")
-        quantity = data['quantity'].strip("")
-        lower_inventory = data['lower_inventory'].strip("")
+        price = data['price']
+        quantity = data['quantity']
+        lower_inventory = data['lower_inventory']
         date = datetime.datetime.now()
 
         
@@ -232,6 +232,7 @@ class SaleRecord(Resource):
         
 
         products = PostProduct.get_products(self)
+        print(products)
         for product in products:
             if int(product['id']) == int(id):
             
