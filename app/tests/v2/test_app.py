@@ -103,7 +103,7 @@ class TestProducts(unittest.TestCase):
             "lower_inventory":10
         })
         response=self.test_client.post('api/v2/products', data=product_data, headers={
-                                                  'content-type': 'application/json','access-token':self.admin_token["token"]})
+                                                  'content-type': 'application/json','access_token':self.admin_token["token"]})
         print(response.data)
        
         self.assertEqual(response.status_code, 201)
