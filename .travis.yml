@@ -9,7 +9,7 @@ install:
 before_script:
  - psql -c 'create database teststore;' -U postgres
 script:
- - pytest app/api/v2
+ - pytest app/tests/v2
  - pytest --cov=app/api/v2
 after_script:
  - coveralls 
