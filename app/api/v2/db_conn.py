@@ -3,24 +3,21 @@ import psycopg2.extras
 from sys import modules
 import os
 
+def dbconn():
+    try:
+        if 'pytest' in modules:
+                connection = psycopg2.connect(
+                    host="localhost", user="postgres", dbname="teststore", password="1234")
+                return connection
+        else:
+                connection = psycopg2.connect(
+                    host="localhost", user="postgres", dbname="storemanager", password="1234")
 
-try:
-    if 'pytest' in modules:
-        def dbconn():
-            connection = psycopg2.connect(
-                host="localhost", user="postgres", dbname="teststore", password="1234")
-            return connection
-    else:
-        def dbconn():
-            connection = psycopg2.connect(
-                host="localhost", user="postgres", dbname="storemanager", password="1234")
-
-            return connection
-except Exception:
-        def dbconn():
-            connection = psycopg2.connect(
-                    os.environ['DATABASE_URL'], sslmode='require')
-            return connection
+                return connection
+    except Exception:
+                connection = psycopg2.connect(
+                        os.environ['DATABASE_URL'], sslmode='require')
+                return connection
 
 
 
