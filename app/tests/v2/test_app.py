@@ -85,7 +85,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud17@gmail.com",
+            "email":"eliud19@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -95,7 +95,7 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel5",
+            "name": "itel8",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
