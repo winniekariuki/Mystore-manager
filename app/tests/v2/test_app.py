@@ -72,9 +72,8 @@ class TestProducts(unittest.TestCase):
         
         
         
-        self.create_product = self.test_client.post('api/v2/products', data=product_data,content_type='application/json')#'access_token':self.admin_token})
-        # self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-        #                                           'content-type': 'application/json', 'access_token':self.storeattendant_token["token"]})
+        self.create_product = self.test_client.post('api/v2/products', data=product_data,content_type='application/json')
+       
         
     def tearDown(self):
         destroy_tables()
@@ -85,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud20@gmail.com",
+            "email":"eliud21@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -95,13 +94,13 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel10",
+            "name": "itel4",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
             "lower_inventory":10
         })
-        response=self.test_client.post('api/v2/products', data=product_data,content_type= 'application/json')#'access_token':self.admin_token["token"]})
+        response=self.test_client.post('api/v2/products', data=product_data,content_type= 'application/json')
         print(response.data)
        
         self.assertEqual(response.status_code, 201)
@@ -109,7 +108,7 @@ class TestProducts(unittest.TestCase):
    
     def test_login(self):
         login = json.dumps({
-            "username": "Morgwjwkjhfkan",
+            "username": "Eliud",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
@@ -325,14 +324,14 @@ class TestProducts(unittest.TestCase):
     
     def test_product_exists(self):
         product_data = json.dumps({
-            "name": "sdfghfghxjjfjl",
+            "name": "itel10",
             "category":"Laptop",
             "price": 2563,
             "quantity":2,
             "lower_inventory":10
         })
         response=self.test_client.post('api/v2/products', data=product_data, headers={
-                                                  'content-type': 'application/json'})#'access-token':self.admin_token["token"]})
+                                                  'content-type': 'application/json'})
         self.assertEqual(json.loads(response.data)
                          ['message'], "product already exists")
         self.assertEqual(response.status_code, 406) 
@@ -346,7 +345,7 @@ class TestProducts(unittest.TestCase):
             "lower_inventory":10
         })
         response=self.test_client.post('api/v2/products', data=product_data, headers={
-                                                  'content-type': 'application/json'})#'access-token':self.admin_token["token"]})
+                                                  'content-type': 'application/json'})
         self.assertEqual(json.loads(response.data)
                          ['message'], "Details required")
         self.assertEqual(response.status_code, 400)    
