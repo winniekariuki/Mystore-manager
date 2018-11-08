@@ -10,7 +10,8 @@ before_script:
  - cp env.example .env
  - psql -c 'create database teststore;' -U postgres
 script:
- - pytest
+ - coverage run --source=app -m pytest && coverage report 
+
 after_script:
  - coveralls 
  - codeclimate-test-reporter
