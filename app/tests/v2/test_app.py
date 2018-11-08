@@ -72,8 +72,7 @@ class TestProducts(unittest.TestCase):
         
         
         
-        self.create_product = self.test_client.post('api/v2/products', data=product_data, headers={
-                                                  'content-type': 'application/json','access_token':self.admin_token})
+        self.create_product = self.test_client.post('api/v2/products', data=product_data,content_type='application/json')#'access_token':self.admin_token})
         # self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
         #                                           'content-type': 'application/json', 'access_token':self.storeattendant_token["token"]})
         
@@ -86,7 +85,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud4@gmail.com",
+            "email":"eliud17@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -96,14 +95,13 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "saf",
+            "name": "itel5",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
             "lower_inventory":10
         })
-        response=self.test_client.post('api/v2/products', data=product_data, headers={
-                                                  'content-type': 'application/json','access_token':self.admin_token["token"]})
+        response=self.test_client.post('api/v2/products', data=product_data,content_type= 'application/json')#'access_token':self.admin_token["token"]})
         print(response.data)
        
         self.assertEqual(response.status_code, 201)
