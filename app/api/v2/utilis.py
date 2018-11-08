@@ -91,12 +91,6 @@ class Register:
 
 class Validateproduct:
 
-    # def detailsvalidate(self,data):
-
-    #     if "name" not in data or "category" not in data or "price" not in data or "quantity" not in data or "lower_inventory" not in data :
-    #         Response = "Provide all product Details"
-    #         abort(400, Response)
-
     def emptydetails(self, data):
         if data["name"] == "":
             Response = "Details required"
