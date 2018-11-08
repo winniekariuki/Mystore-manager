@@ -94,7 +94,7 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel25",
+            "name": "itel36",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
@@ -113,7 +113,7 @@ class TestProducts(unittest.TestCase):
         })
         response = self.test_client.post(
             '/api/v2/auth/login', data=login, content_type='application/json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 403)
 
     def test_get_products(self):
 
@@ -324,7 +324,7 @@ class TestProducts(unittest.TestCase):
     
     def test_product_exists(self):
         product_data = json.dumps({
-            "name": "neon",
+            "name": "itel36",
             "category":"Laptop",
             "price": 2563,
             "quantity":2,
