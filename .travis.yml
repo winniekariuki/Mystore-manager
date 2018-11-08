@@ -10,7 +10,6 @@ before_script:
  - cp env.example .env
  - psql -c 'create database teststore;' -U postgres
 script:
- - pytest --cov-report term-missing --cov=app
  - pytest
 after_script:
  - coveralls 
