@@ -168,12 +168,12 @@ class Produce(Resource):
 
 
 class Singleproduct(Resource):
-    @token_required
-    def put(user_data, self, id):
-        if user_data["role"] != "Admin":
-           return make_response(jsonify({
-               "message": "Not authorized"
-           }), 401)
+    #@token_required
+    def put( self, id):
+        # if user_data["role"] != "Admin":
+        #    return make_response(jsonify({
+        #        "message": "Not authorized"
+        #    }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -185,12 +185,12 @@ class Singleproduct(Resource):
                     
                     "Message": "Updated successfully"}), 200)
 
-    @token_required
-    def delete(user_data, self, id):
-        if user_data["role"] != "Admin":
-                return make_response(jsonify({
-                    "message": "Not authorized"
-                }), 401)
+    #@token_required
+    def delete( self, id):
+        # if user_data["role"] != "Admin":
+        #         return make_response(jsonify({
+        #             "message": "Not authorized"
+        #         }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
