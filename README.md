@@ -45,7 +45,7 @@ _Router used-'api/v2/sales/1' GET METHOD.</p>
      <li>Open a repo in github</li>
      <li>Clone the repository into the local machine through the terminal by: git clone https://github.com/winniekariuki/Mystore-manager.git</li>
      <li>Create a virtual enviroment with the command $ virtualenv -p python3 env</li>
-     <li>Activate the virtual enviroment with the command `Desktop/Challeng3/env/Scripts/activate`</li>
+     <li>Activate the virtual enviroment with the command `Desktop/Mystore-manager/env/Scripts/activate`</li>
     <li>cd back into the Challeng3 where you include all your code related files.</li>
     <li>Install requirements $ pip install -r requirements.txt</li>
   </ol>
