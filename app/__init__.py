@@ -1,6 +1,7 @@
-from flask import Flask 
+from flask import Flask
 from  flask_restful import Api
 from app.api.v2.db_conn import create_tables
+from flask_cors import CORS
 
 from instance.config import app_config
 
@@ -9,6 +10,7 @@ create_tables()
 
 def create_app(config_name):
 	app = Flask(__name__,instance_relative_config=True)
+	CORS(app)
 	app.config.from_pyfile('config.py')
 	from app.api.v2 import version2 as v2
 	

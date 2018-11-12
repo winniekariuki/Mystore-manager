@@ -11,18 +11,18 @@ signup_schema = {
 login_schema = {
     "type": "object",
     "properties": {
-        "username": {type: "string"},
+        "email": {type: "string"},
         "password": {type: "string"}
     },
-    "required": ["username", "password"]
+    "required": ["email", "password"]
 }
 login_schema = {
     "type": "object",
     "properties": {
-        "username": {type: "string"},
+        "email": {type: "string"},
         "password": {type: "string"}
     },
-    "required": ["username", "password"]
+    "required": ["email", "password"]
 }
 product_schema = {
     "type": "object",
@@ -41,12 +41,12 @@ product_schema = {
 sale_schema = {
 "type": "object",
 "properties": {
-    "id": {type: "string"},
-    "user_id": {type: "string"},
+    
+    "name": {type: "string"},
     "quantity": {type: "string"},
 
 
 
 },
-"required": ["id", "user_id", "price", "quantity"]
+"required": ["name", "quantity"]
 }

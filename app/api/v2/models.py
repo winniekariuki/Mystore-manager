@@ -16,7 +16,7 @@ class User():
             self.email = data['email']
             self.password =generate_password_hash(data['password'])
             self.role = data['role']
-            print(data)
+            # print(data)
 
     def save_admin(self):
         '''Save the admin information in the database'''
@@ -157,25 +157,13 @@ class PostProduct():
         cursor = self.con.cursor()
         cursor.execute(
             "DELETE FROM products WHERE id = %s",
-            (self.id)
+            (self.id,)
 
             )
         self.con.commit()
         self.con.close()
 
-    # def get_product_by_id(self,id):
-    #     self.id = id
-    #     self.con=dbconn() 
-    #     cursor = self.con.cursor()
-    #     cursor.execute(
-    #         "SELECT * FROM products WHERE id = %s",
-    #         (self.id,)
-
-    #         )
-    #     product=cursor.fetchone()
-    #     self.con.commit()
-    #     self.con.close()
-    #     return product
+    
 
     def update_product_quantity(self,id,new_quantity):
         self.con=dbconn() 
@@ -195,8 +183,10 @@ class PostSale():
             self.con = dbconn()
 
             self.user_id = data['user_id']
-            self.id = data['id']
             self.quantity = data['quantity']
+            self.name = data['name']
+            self.id = data['id']
+            self.price = data['price']
             self.total_price = data['total_price']
         
             
@@ -207,8 +197,8 @@ class PostSale():
         
         try:
             cursor.execute(
-            "INSERT INTO sales(user_id,id,quantity,total_price) VALUES(%s,%s,%s,%s)",
-            (self.user_id, self.id, self.quantity, self.total_price,)
+            "INSERT INTO sales(user_id,quantity,name,id,price,total_price) VALUES(%s,%s,%s,%s,%s,%s)",
+            (self.user_id,self.quantity,self.name,self.id,self.price,self.total_price,)
 
 
                 )
@@ -225,19 +215,23 @@ class PostSale():
         cursor = self.con.cursor()
         cursor.execute("SELECT  * FROM sales")
         result = cursor.fetchall()
-        # print(result)
         sales = []
 
         for sale in result:
             single_sale = {}
             single_sale['sale_id'] = sale[0]
             single_sale['user_id'] =sale[1]
-            single_sale['id'] =sale[2]
+            single_sale['quantity'] = sale[2]
+            single_sale['name'] = sale[3]
+            single_sale['id'] = sale[4]
+            single_sale['price'] = sale[5]
+            single_sale['total_price'] = sale[6]
+
             
             sales.append(single_sale)
 
-            self.con.close()
-            return sales
+        self.con.close()
+        return sales
     
 
 

@@ -35,13 +35,13 @@ class TestProducts(unittest.TestCase):
 
         })
         self.login_data_storeattendant = json.dumps({
-            "username": "Sammy",
+            "email": "sammy2@g.com",
              "password": "aS@1244"
 
         })
         
         self.login_data_admin = json.dumps({
-            "username": "Winnie",
+            "email": "winniekariuki07@gmail.com",
             "password": "winnie07@"
 
         })
@@ -57,7 +57,7 @@ class TestProducts(unittest.TestCase):
         self.login_admin_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
 
-        print(self.login_admin_user.data)
+        # print(self.login_admin_user.data)
         self.admin_token = json.loads(
             self.login_admin_user.data.decode())
 
@@ -68,7 +68,7 @@ class TestProducts(unittest.TestCase):
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
-        print(self.login_attendant_user.data)
+        # print(self.login_attendant_user.data)
         
         
         
@@ -84,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud66@gmail.com",
+            "email":"eliud70@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -94,26 +94,26 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel75",
+            "name": "itel70",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
             "lower_inventory":10
         })
         response=self.test_client.post('api/v2/products', data=product_data,content_type= 'application/json')
-        print(response.data)
+        # print(response.data)
        
         self.assertEqual(response.status_code, 201)
         
    
     def test_login(self):
         login = json.dumps({
-            "username": "Eliud",
+            "email":"eliud70@gmail.com",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
             '/api/v2/auth/login', data=login, content_type='application/json')
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code,403 )
 
     def test_get_products(self):
 

@@ -34,7 +34,7 @@ def create_tables():
 
                 """
                 CREATE TABLE IF NOT EXISTS products (id serial PRIMARY KEY,
-                name varchar(30) not null,
+                name varchar(30) not null UNIQUE,
                 category varchar(30) not null,
                 price float(4) not null,
                 quantity int not null,
@@ -47,7 +47,9 @@ def create_tables():
                     CREATE TABLE IF NOT EXISTS sales (sale_id serial PRIMARY KEY,
                     user_id int  REFERENCES users(user_id) not null,
                     quantity int not null,
-                    id int  REFERENCES products(id) not null,
+                    name varchar(30) REFERENCES products(name) ON DELETE CASCADE,
+                    id int  REFERENCES products(id) ON DELETE CASCADE,
+                    price float(4)  not null,
                     total_price int not null                
                 
                     )
