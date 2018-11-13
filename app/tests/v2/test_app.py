@@ -135,6 +135,11 @@ class TestProducts(unittest.TestCase):
         response = self.test_client.get(
             'api/v2/users', content_type='application/json')
         self.assertEqual(response.status_code, 200)
+    def test_get_sales(self):
+
+        response = self.test_client.get(
+            'api/v2/sales', content_type='application/json')
+        self.assertEqual(response.status_code, 200)
 
     def test_delete_product(self):
 
