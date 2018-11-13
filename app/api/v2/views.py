@@ -30,14 +30,14 @@ def token_required(f):
         if not token:
             return make_response(jsonify({
                 "message": "Token required"
-                }), 401)
+                }), 499)
         try:
             data = jwt.decode(token, Config.SECRET_KEY)
             for user in users:
                 if user['email'] == data['email']:
                     user_data = user
         except Exception as st:
-            return make_response(jsonify({"message": "Invalid Token!"}), 403)
+            return make_response(jsonify({"message": "Invalid Token!"}), 498)
 
         return f(user_data, *args, **kwargs)
     return decorator
@@ -117,7 +117,7 @@ class LoginUser(Resource):
             return make_response(jsonify({
                                          'Status': 'Failed',
                                          'message': "Enter credentials"
-                                         }), 400)
+                                         }), 401)
         
         # print(self.user_ins)
         for user in self.user_ins:
@@ -132,8 +132,8 @@ class LoginUser(Resource):
 
         return make_response(jsonify({
                 
-                'message': "Please check your password and username"
-                }), 403)
+                'message': "Please check your password and email"
+                }), 401)
 
 
 class Produce(Resource):
@@ -181,12 +181,12 @@ class Produce(Resource):
 
 
 class Singleproduct(Resource):
-    #@token_required
-    def put( self, id):
-        # if user_data["role"] != "Admin":
-        #    return make_response(jsonify({
-        #        "message": "Not authorized"
-        #    }), 401)
+    @token_required
+    def put(user_data, self, id):
+        if user_data["role"] != "Admin":
+           return make_response(jsonify({
+               "message": "Not authorized"
+           }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -198,13 +198,13 @@ class Singleproduct(Resource):
                     
                     "Message": "Updated successfully"}), 200)
 
-    #@token_required
-    def delete( self, id):
+    @token_required
+    def delete( user_data,self, id):
         id=int(id)
-        # if user_data["role"] != "Admin":
-        #         return make_response(jsonify({
-        #             "message": "Not authorized"
-        #         }), 401)
+        if user_data["role"] != "Admin":
+                return make_response(jsonify({
+                    "message": "Not authorized"
+                }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -249,10 +249,10 @@ class SaleRecord(Resource):
             
                 if int(product['quantity'])<int(quantity):
                     return make_response(jsonify({
-                            "Message": "Product not enough"}), 400)
+                            "Message": "Product not enough"}), 404)
                 if int(product['quantity'])<0:
                     return make_response(jsonify({
-                            "Message": "Product is out of stock"}), 400)
+                            "Message": "Product is out of stock"}), 404)
         
                 total_price=product['price']*quantity
                 data2 = {
@@ -275,12 +275,12 @@ class SaleRecord(Resource):
     
         return make_response(jsonify({
             "Message": "Product does not exist"}), 404)    
-    # @token_required
-    def get(self):
-        # if user_data["role"] != "Admin":
-        #    return make_response(jsonify({
-        #        "message": "Not authorized"
-        #    }), 401)
+    @token_required
+    def get(user_data,self):
+        if user_data["role"] != "Admin":
+           return make_response(jsonify({
+               "message": "Not authorized"
+           }), 401)
         sale_ins = PostSale.get_sales(self)
         return make_response(jsonify({
             "Status": "Ok",
@@ -288,12 +288,12 @@ class SaleRecord(Resource):
             "MySaleRecords": sale_ins}), 200)
 
 class SingleSaleRecord(Resource):
-        # @token_required
-        def get( self, saleID):
-            # if user_data["role"] != "Admin" or user_data["role"] != "storeattendant":
-            #         make_response(jsonify({
-            #             "message": "Unauthorized"
-            #         }), 401)
+        @token_required
+        def get(user_data, self, saleID):
+            if user_data["role"] != "Admin" or user_data["role"] != "storeattendant":
+                    make_response(jsonify({
+                        "message": "Unauthorized"
+                    }), 401)
             self.sale_ins = PostSale.get_sales(self)
             for sale in self.sale_ins :
                 if sale['sale_id'] == int(saleID):
