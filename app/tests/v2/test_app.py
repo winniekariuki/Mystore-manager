@@ -85,7 +85,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud940@gmail.com",
+            "email":"eliud950@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -96,7 +96,7 @@ class TestProducts(unittest.TestCase):
 
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel940",
+            "name": "itel950",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
@@ -111,12 +111,12 @@ class TestProducts(unittest.TestCase):
    
     def test_login(self):
         login = json.dumps({
-            "email":"eliud940@gmail.com",
+            "email":"eliud950@gmail.com",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
             '/api/v2/auth/login', data=login, content_type='application/json')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,403)
 
     # def test_get_products(self):
 
