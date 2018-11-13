@@ -72,7 +72,7 @@ class TestProducts(unittest.TestCase):
                                                         content_type = 'application/json')
         
         self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-                                                 'content-type': 'application/json', 'access-token': self.storeattendant_token})
+                                                 'content_type': 'application/json', 'access_token': self.storeattendant_token})
         
         
     def tearDown(self):
@@ -377,9 +377,23 @@ class TestProducts(unittest.TestCase):
 
     def test_post_sales(self):
         response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
-        'content_type': 'application/json', 'access-token': self.storeattendant_token})
+        'content_type': 'application/json', 'access_token': self.storeattendant_token})
 
         self.assertEqual(response.status_code, 400)
+    def test_get_single_sales_admin(self):
+
+        response = self.test_client.get(
+            'api/v2/sales/1', headers={'content_type': 'application/json', 'access_token': self.admin_token})
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_single_sales_attendant(self):
+
+        response = self.test_client.get('api/v2/sales/1', headers={
+                                        'content_type': 'application/json', 'access_token': self.storeattendant_token})
+        print(response)
+
+        self.assertEqual(response.status_code, 200)
 
 
 
