@@ -138,7 +138,7 @@ class TestProducts(unittest.TestCase):
     def test_put_product(self):
         response = self.test_client.get('api/v2/products/1',headers={
                                          'content-type': 'application/json', 'access_token': self.admin_token})
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_password_lowercase(self):
         user = json.dumps({
