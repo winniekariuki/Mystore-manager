@@ -45,12 +45,12 @@ def token_required(f):
 
 class UserAccount(Resource):
     @expects_json(signup_schema)
-    @token_required
-    def post(user_data,self):
-        if user_data["role"] != "Admin":
-            return make_response(jsonify({
-                "message": "Not authorized"
-            }), 401)
+    # @token_required
+    def post(self):
+        # if user_data["role"] != "Admin":
+        #     return make_response(jsonify({
+        #         "message": "Not authorized"
+        #     }), 401)
         
 
         data = request.get_json()
@@ -138,12 +138,12 @@ class LoginUser(Resource):
 
 class Produce(Resource):
     @expects_json(product_schema)
-    @token_required
-    def post(user_data, self):
-        if user_data["role"] != "Admin":
-            return make_response(jsonify({
-                "message": "Not authorized"
-            }), 401)
+    # @token_required
+    def post( self):
+        # if user_data["role"] != "Admin":
+        #     return make_response(jsonify({
+        #         "message": "Not authorized"
+        #     }), 401)
 
         data = request.get_json()
     
@@ -181,12 +181,12 @@ class Produce(Resource):
 
 
 class Singleproduct(Resource):
-    @token_required
-    def put(user_data, self, id):
-        if user_data["role"] != "Admin":
-           return make_response(jsonify({
-               "message": "Not authorized"
-           }), 401)
+    # @token_required
+    def put( self, id):
+        # if user_data["role"] != "Admin":
+        #    return make_response(jsonify({
+        #        "message": "Not authorized"
+        #    }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -198,13 +198,13 @@ class Singleproduct(Resource):
                     
                     "Message": "Updated successfully"}), 200)
 
-    @token_required
-    def delete( user_data,self, id):
+    # @token_required
+    def delete( self, id):
         id=int(id)
-        if user_data["role"] != "Admin":
-                return make_response(jsonify({
-                    "message": "Not authorized"
-                }), 401)
+        # if user_data["role"] != "Admin":
+        #         return make_response(jsonify({
+        #             "message": "Not authorized"
+        #         }), 401)
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -275,12 +275,12 @@ class SaleRecord(Resource):
     
         return make_response(jsonify({
             "Message": "Product does not exist"}), 404)    
-    @token_required
-    def get(user_data,self):
-        if user_data["role"] != "Admin":
-           return make_response(jsonify({
-               "message": "Not authorized"
-           }), 401)
+    # @token_required
+    def get(self):
+        # if user_data["role"] != "Admin":
+        #    return make_response(jsonify({
+        #        "message": "Not authorized"
+        #    }), 401)
         sale_ins = PostSale.get_sales(self)
         return make_response(jsonify({
             "Status": "Ok",
@@ -288,12 +288,12 @@ class SaleRecord(Resource):
             "MySaleRecords": sale_ins}), 200)
 
 class SingleSaleRecord(Resource):
-        @token_required
-        def get(user_data, self, saleID):
-            if user_data["role"] != "Admin" or user_data["role"] != "storeattendant":
-                    make_response(jsonify({
-                        "message": "Unauthorized"
-                    }), 401)
+        # @token_required
+        def get( self, saleID):
+            # if user_data["role"] != "Admin" or user_data["role"] != "storeattendant":
+            #         make_response(jsonify({
+            #             "message": "Unauthorized"
+            #         }), 401)
             self.sale_ins = PostSale.get_sales(self)
             for sale in self.sale_ins :
                 if sale['sale_id'] == int(saleID):
