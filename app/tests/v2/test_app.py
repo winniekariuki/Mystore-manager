@@ -69,12 +69,10 @@ class TestProducts(unittest.TestCase):
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
         print(self.login_attendant_user.data)
+         
+        self.create_product = self.test_client.post('api/v1/products', data=product_data, headers={
+                                                        'content-type': 'application/json', 'access_token': self.admin_token})
         
-        
-        
-       self.create_product = self.test_client.post('api/v1/products', data=product_data, headers={
-                                                    'content-type': 'application/json', 'access_token': self.admin_token})
-       
         
     def tearDown(self):
         destroy_tables()
@@ -85,7 +83,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud3@gmail.com",
+            "email":"eliud4@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -95,7 +93,7 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel3",
+            "name": "itel4",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
@@ -109,7 +107,7 @@ class TestProducts(unittest.TestCase):
    
     def test_login(self):
         login = json.dumps({
-            "email":"eliud3@gmail.com",
+            "email":"eliud4@gmail.com",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
@@ -333,7 +331,7 @@ class TestProducts(unittest.TestCase):
     
     def test_product_exists(self):
         product_data = json.dumps({
-            "name": "itel2",
+            "name": "itel4",
             "category":"Laptop",
             "price": 2563,
             "quantity":2,
