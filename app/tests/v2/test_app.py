@@ -46,9 +46,7 @@ class TestProducts(unittest.TestCase):
 
         })
         self.sale_data = json.dumps({
-            "id":1,
-            "user_id":1,
-            "price":1000,
+            "name":"del",
             "quantity":1
         })
 
@@ -73,6 +71,8 @@ class TestProducts(unittest.TestCase):
         self.create_product = self.test_client.post('api/v2/products', data=product_data, 
                                                         content_type = 'application/json')
         
+        self.create_sale = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
+                                                 'content-type': 'application/json', 'access-token': self.storeattendant_token})
         
         
     def tearDown(self):
