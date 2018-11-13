@@ -70,7 +70,9 @@ class TestProducts(unittest.TestCase):
             self.login_attendant_user.data.decode())
         # print(self.login_attendant_user.data)
          
-        self.create_product = self.test_client.post('api/v1/products', data=product_data, 
+        self.create_product = self.test_client.post('api/v2/products', data=product_data, 
+                                                        content_type = 'application/json')
+        self.create_users = self.test_client.post('api/v2/users', data=users_data_storeattendant, 
                                                         content_type = 'application/json')
         
         
