@@ -72,7 +72,8 @@ class TestProducts(unittest.TestCase):
         
         
         
-        self.create_product = self.test_client.post('api/v2/products', data=product_data,content_type='application/json')
+       self.create_product = self.test_client.post('api/v1/products', data=product_data, headers={
+                                                    'content-type': 'application/json', 'access_token': self.admin_token})
        
         
     def tearDown(self):
