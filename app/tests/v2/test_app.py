@@ -372,11 +372,18 @@ class TestProducts(unittest.TestCase):
                                                   'content-type': 'application/json'})
         self.assertEqual(json.loads(response.data)
                          ['message'], "Details required")
-        self.assertEqual(response.status_code, 400)    
-        
-       
-        
-    
+        self.assertEqual(response.status_code, 400)  
+
+
+    def test_post_sales(self):
+        response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
+        'content_type': 'application/json', 'access-token': self.storeattendant_token})
+
+        self.assertEqual(response.status_code, 201)
+
+
+
+
     
 
 
