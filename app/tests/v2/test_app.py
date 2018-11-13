@@ -58,19 +58,21 @@ class TestProducts(unittest.TestCase):
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
 
         print(self.login_admin_user.data)
+
         self.admin_token = json.loads(
             self.login_admin_user.data.decode())
 
-        self.create_storeattendant_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant, 
-                                                    content_type='application/json') 
+        self.create_storeattendant_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant,headers={
+                                                        'content-type': 'application/json', 'access_token': self.admin_token}) 
+                                                   
 
         self.login_attendant_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
-        # print(self.login_attendant_user.data)
+        print(self.login_attendant_user.data)
          
-        self.create_product = self.test_client.post('api/v1/products', data=product_data, headers={
+        self.create_product = self.test_client.post('api/v2/products', data=product_data, headers={
                                                         'content-type': 'application/json', 'access_token': self.admin_token})
         
         
@@ -83,33 +85,33 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud700@gmail.com",
+            "email":"eliud930@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
 
-        response = self.test_client.post(
-            '/api/v2/auth/signup', data=user, content_type='application/json')
-        self.assertEqual(response.status_code,201)
-
-    def test_create_product(self):
-        product_data = json.dumps({
-            "name": "itel700",
-            "category":"mobile",
-            "price": 2563,
-            "quantity":2,
-            "lower_inventory":10
-        })
-        response = self.test_client.post('api/v2/products', data=product_data, headers={
-                                         'content-type': 'application/json', 'access-token': self.admin_token})
-        print(response.data)
-       
+        response = self.test_client.post('api/v2/auth/signup', data=user, headers={
+                                         'content-type': 'application/json', 'access_token': self.admin_token})
         self.assertEqual(response.status_code, 403)
+
+    # def test_create_product(self):
+    #     product_data = json.dumps({
+    #         "name": "itel800",
+    #         "category":"mobile",
+    #         "price": 2563,
+    #         "quantity":2,
+    #         "lower_inventory":10
+    #     })
+    #     response = self.test_client.post('api/v2/products', data=product_data, headers={
+    #                                      'content-type': 'application/json', 'access_token': self.admin_token})
+    #     print(response.data)
+       
+    #     self.assertEqual(response.status_code,201)
         
    
     # def test_login(self):
     #     login = json.dumps({
-    #         "email":"eliud502@gmail.com",
+    #         "email":"eliud800@gmail.com",
     #         "password": "Bb#6060"
     #     })
     #     response = self.test_client.post(

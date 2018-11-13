@@ -45,13 +45,12 @@ def token_required(f):
 
 class UserAccount(Resource):
     @expects_json(signup_schema)
-    # @token_required
-    
-    def post(self):
-        # if user_data["role"] != "Admin":
-        #     return make_response(jsonify({
-        #         "message": "Not authorized"
-        #     }), 401)
+    @token_required
+    def post(user_data,self):
+        if user_data["role"] != "Admin":
+            return make_response(jsonify({
+                "message": "Not authorized"
+            }), 401)
         
 
         data = request.get_json()
