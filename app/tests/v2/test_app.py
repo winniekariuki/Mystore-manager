@@ -11,8 +11,8 @@ class TestProducts(unittest.TestCase):
 
     def setUp(self):
         self.app = create_app(config_name="testing")
-        destroy_tables()
         dbconn()
+        destroy_tables()
         create_tables()
         self.test_client = self.app.test_client()
         self.app_context = self.app.app_context()
@@ -72,8 +72,7 @@ class TestProducts(unittest.TestCase):
          
         self.create_product = self.test_client.post('api/v2/products', data=product_data, 
                                                         content_type = 'application/json')
-        self.create_users = self.test_client.post('api/v2/users', data=users_data_storeattendant, 
-                                                        content_type = 'application/json')
+        
         
         
     def tearDown(self):
@@ -93,18 +92,7 @@ class TestProducts(unittest.TestCase):
         response = self.test_client.post(
             '/api/v2/auth/signup', data=user, content_type='application/json')
         self.assertEqual(response.status_code,201)
-    def test_create_user(self):
-        
-        user = json.dumps({
-            "username": "Eliud",
-            "email":"eliud850@gmail.com",
-            "password": "Bb#6060",
-            "role": "storeattendant"
-        })
-
-        response = self.test_client.post(
-            '/api/v2/users', data=user, content_type='application/json')
-        self.assertEqual(response.status_code,201)
+    
         
 
 
@@ -142,6 +130,12 @@ class TestProducts(unittest.TestCase):
         response = self.test_client.get(
             'api/v2/products/1', content_type='application/json')
         self.assertEqual(response.status_code, 200)
+    def test_get_users(self):
+
+        response = self.test_client.get(
+            'api/v2/users', content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+
     def test_delete_product(self):
 
         response = self.test_client.get(
