@@ -139,7 +139,12 @@ class LoginUser(Resource):
 
 class Produce(Resource):
     @expects_json(product_schema)
-    def post( self):
+    @token_required
+    def post(user_data, self):
+        if user_data["role"] != "Admin":
+            return make_response(jsonify({
+                "message": "Not authorized"
+            }), 401)
 
         data = request.get_json()
     
