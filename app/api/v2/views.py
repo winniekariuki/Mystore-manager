@@ -225,7 +225,7 @@ class Singleproduct(Resource):
 class SaleRecord(Resource):
     @expects_json(sale_schema)
     @token_required
-    def post( self):
+    def post(user_data,self):
         if user_data["role"] != "storeattendant":
             return make_response(jsonify({
                "message": "Not authorized"

@@ -35,7 +35,7 @@ class TestProducts(unittest.TestCase):
 
         })
         self.login_data_storeattendant = json.dumps({
-            "email": "sammy2@g.com",
+            "email": "sammy0fgh9@gmail.com",
              "password": "aS@1244"
 
         })
@@ -57,7 +57,7 @@ class TestProducts(unittest.TestCase):
         self.login_admin_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
 
-        # print(self.login_admin_user.data)
+        print(self.login_admin_user.data)
         self.admin_token = json.loads(
             self.login_admin_user.data.decode())
 
@@ -68,7 +68,7 @@ class TestProducts(unittest.TestCase):
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
-        # print(self.login_attendant_user.data)
+        print(self.login_attendant_user.data)
         
         
         
@@ -84,7 +84,7 @@ class TestProducts(unittest.TestCase):
         
         user = json.dumps({
             "username": "Eliud",
-            "email":"eliud12@gmail.com",
+            "email":"eliud3@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -94,7 +94,7 @@ class TestProducts(unittest.TestCase):
         self.assertEqual(response.status_code,201)
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel12",
+            "name": "itel3",
             "category":"mobile",
             "price": 2563,
             "quantity":2,
@@ -108,7 +108,7 @@ class TestProducts(unittest.TestCase):
    
     def test_login(self):
         login = json.dumps({
-            "email":"eliud12@gmail.com",
+            "email":"eliud3@gmail.com",
             "password": "Bb#6060"
         })
         response = self.test_client.post(
@@ -332,7 +332,7 @@ class TestProducts(unittest.TestCase):
     
     def test_product_exists(self):
         product_data = json.dumps({
-            "name": "itel12",
+            "name": "itel2",
             "category":"Laptop",
             "price": 2563,
             "quantity":2,
