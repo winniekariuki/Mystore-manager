@@ -379,7 +379,7 @@ class TestProducts(unittest.TestCase):
         response = self.test_client.post('api/v2/sales', data=self.sale_data, headers={
         'content_type': 'application/json', 'access-token': self.storeattendant_token})
 
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 400)
 
 
 
