@@ -11,26 +11,10 @@ from app.tests.v2.test_app import *
 
 class Testsignup(TestProducts):
     def test_signup(self):
-            users_data_admin = json.dumps({
-                "username": "Winnie",
-                "email": "winniekariuki07@gmail.com",
-                "password": "winnie07@",
-                "role": "Admin"
-
-
-            })
-            self.create_admin_user = self.test_client.post('api/v2/auth/signup', data=users_data_admin,
-                                                                content_type='application/json')
-
-
-            self.login_admin_user = self.test_client.post(
-                '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
-
-
 
             user = json.dumps({
                 "username": "Eliud",
-                "email": "eliud290@gmail.com",
+                "email": "eliud289@gmail.com",
                 "password": "Bb#6060",
                 "role": "storeattendant"
             })

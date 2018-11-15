@@ -24,14 +24,6 @@ class TestProducts(unittest.TestCase):
             "quantity": 23,
             "lower_inventory": 10
         })
-        users_data_admin = json.dumps({
-            "username": "Winnie",
-            "email": "winniekariuki07@gmail.com",
-            "password": "winnie07@",
-            "role": "Admin"
-
-
-        })
 
         users_data_storeattendant = json.dumps({
             "username": "Sammy",
@@ -56,14 +48,10 @@ class TestProducts(unittest.TestCase):
             "quantity": 1
         })
 
-        self.create_admin_user = self.test_client.post('api/v2/auth/signup', data=users_data_admin,
-                                                                content_type='application/json')
-
-
         self.login_admin_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
 
-        print(self.login_admin_user.data)
+        # print(self.login_admin_user.data)
 
         self.admin_token = json.loads(
             self.login_admin_user.data.decode())
