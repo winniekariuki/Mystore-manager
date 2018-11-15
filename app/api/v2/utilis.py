@@ -2,7 +2,7 @@ import re
 from flask import abort,jsonify,make_response
 from .models import User, PostProduct
 
-class Register:
+class Registerpass:
     def pass_validate(self, data):
 
         if not re.search("[A-Z]",data["password"]):
@@ -24,29 +24,7 @@ class Register:
         elif len(data["password"])<6 or len(data["password"])>12:
             Response = "password must  have a minimum of 6 characters"
             abort(400,Response )
-    def email_validate(self, data):
-        if  re.search("[A-Z]",data["email"]):
-            Response = "No uppercase in email"
-            abort(400,Response )
-
-        elif not  re.search("[a-z]",data["email"]):
-            Response = "email must have  lowercase letters"
-            abort(400,Response )
-
-        elif not re.search("[0-9]",data["email"]):
-            Response = "email must have atleast one digit"
-            abort(400,Response )
-
-        elif not  re.search("[@]",data["email"]):
-            Response = "email must have @ special case"
-            abort(400,Response )
-        elif not re.search("[.]", data["email"]):
-            Response = "email must have [.] "
-            abort(400,Response )  
-        elif len(data["email"])<6 or len(data["email"])>30:
-            Response = "email must  have a minimum of 6 characters"
-            abort(400,Response )
-
+    
     def data_validate(self, data):
         if type(data["username"]) is not str or type(data["email"]) is not str or type(data["password"]) is not str or type(data["role"]) is not str :
 
@@ -81,30 +59,6 @@ class Register:
                 Response="User already exists"
                 abort(406,Response)
 
-    def existing_product(self,data):
-        self.product_ins = PostProduct.get_products(self)
-        for product in self.product_ins:
-            if data["name"] == product["name"]:
-                Response="product already exists"
-                abort(406,Response)
+   
         
 
-class Validateproduct:
-
-    def emptydetails(self, data):
-        if data["name"] == "":
-            Response = "Details required"
-            abort(400, Response)
-        if data["category"] == "":
-            Response = "Details required"
-            abort(400, Response)
-        if data["price"] == "":
-            Response = "Details required"
-            abort(400, Response)
-        if  data["quantity"] == "":
-            Response = "Details required"
-            abort(400, Response)
-
-        if  data["lower_inventory"] == "":
-            Response = "Details required"
-            abort(400, Response)

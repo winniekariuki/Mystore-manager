@@ -230,6 +230,8 @@ class PostSale():
             
             sales.append(single_sale)
 
+        self.con.commit()
+        cursor.close()
         self.con.close()
         return sales
     
