@@ -1,4 +1,3 @@
-
 import unittest
 from app import create_app
 from instance.config import app_config
@@ -14,7 +13,7 @@ class Testsignup(TestProducts):
 
         user = json.dumps({
             "username": "Eliud",
-            "email": "eliud813@gmail.com",
+            "email": "eliud822@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -24,6 +23,20 @@ class Testsignup(TestProducts):
                                           content_type='application/json')
         
         self.assertEqual(response.status_code, 201)
+    def test_login(self):
+        login = json.dumps({
+            "email": "eliud816@gmail.com",
+            "password": "Bb#6060"
+        })
+        response = self.test_client.post(
+            '/api/v2/auth/login', data=login, content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+    def test_get_users(self):
+
+        response = self.test_client.get(
+            'api/v2/users', content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+
 
             
         
