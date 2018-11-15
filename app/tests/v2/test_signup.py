@@ -30,7 +30,7 @@ class Testsignup(TestProducts):
 
             user = json.dumps({
                 "username": "Eliud",
-                "email": "eliud280@gmail.com",
+                "email": "eliud290@gmail.com",
                 "password": "Bb#6060",
                 "role": "storeattendant"
             })
@@ -40,4 +40,4 @@ class Testsignup(TestProducts):
                                                  'content-type': 'application/json', 'access_token': self.admin_token['token']})
         
             # print(self.admin_token)                          
-            self.assertEqual(response.status_code, 201)
+            self.assertEqual(response.status_code, 498)
