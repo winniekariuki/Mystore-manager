@@ -11,6 +11,22 @@ from app.tests.v2.test_app import *
 
 class Testsignup(TestProducts):
     def test_signup(self):
+            users_data_admin = json.dumps({
+                "username": "Winnie",
+                "email": "winniekariuki07@gmail.com",
+                "password": "winnie07@",
+                "role": "Admin"
+
+
+            })
+            self.create_admin_user = self.test_client.post('api/v2/auth/signup', data=users_data_admin,
+                                                                content_type='application/json')
+
+
+            self.login_admin_user = self.test_client.post(
+                '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
+
+
 
             user = json.dumps({
                 "username": "Eliud",
@@ -21,7 +37,7 @@ class Testsignup(TestProducts):
 
             
             response = self.test_client.post('api/v2/auth/signup', data=user,headers={
-                                                 'content-type': 'application/json', 'access_token': self.admin_token['access_token']})
+                                                 'content-type': 'application/json', 'access_token': self.admin_token['token']})
         
             # print(self.admin_token)                          
             self.assertEqual(response.status_code, 201)
