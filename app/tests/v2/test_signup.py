@@ -14,7 +14,7 @@ class Testsignup(TestProducts):
 
             user = json.dumps({
                 "username": "Eliud",
-                "email": "eliud218@gmail.com",
+                "email": "eliud220@gmail.com",
                 "password": "Bb#6060",
                 "role": "storeattendant"
             })
@@ -23,5 +23,5 @@ class Testsignup(TestProducts):
             response = self.test_client.post('api/v2/auth/signup', data=user,headers={
                                                  'content-type': 'application/json', 'access_token': self.admin_token['token']})
         
-            print(response)                          
+            print(self.admin_token)                          
             self.assertEqual(response.status_code, 201)
