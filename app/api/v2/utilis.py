@@ -16,8 +16,8 @@ class Registerpass:
         elif not re.search("[0-9]",data["password"]):
             Response = "password must have atleast one digit"
             abort(400,Response )
-
-        elif not  re.search("[$#@]",data["password"]):
+    def password_validate(self, data):      
+        if not  re.search("[$#@]",data["password"]):
             Response = "password must have atleast one special character"
             abort(400,Response )
 

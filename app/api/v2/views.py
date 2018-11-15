@@ -58,11 +58,17 @@ class UserAccount(Resource):
         valid = Registeremail()
         valid.email_validate(data)
 
+        valid = Registeremail()
+        valid.mail_validate(data)
+
         valid = Registerpass()
         valid.existing_user(data)
 
         valid = Registerpass()
         valid.pass_validate(data)
+
+        valid = Registerpass()
+        valid.password_validate(data)
 
         valid = Registerpass()
         valid.data_validate(data)
