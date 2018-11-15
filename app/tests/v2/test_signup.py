@@ -13,7 +13,7 @@ class Testsignup(TestProducts):
 
         user = json.dumps({
             "username": "Eliud",
-            "email": "eliud824@gmail.com",
+            "email": "eliud825@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })
@@ -25,7 +25,7 @@ class Testsignup(TestProducts):
         self.assertEqual(response.status_code, 201)
     def test_login(self):
         login = json.dumps({
-            "email": "eliud823@gmail.com",
+            "email": "eliud825@gmail.com",
             "password": "Bb#6060"
         })
         response = self.test_client.post(

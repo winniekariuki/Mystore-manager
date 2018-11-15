@@ -205,7 +205,7 @@ class TestValidation(TestProducts):
 
     def test_product_exists(self):
         product_data = json.dumps({
-            "name": "itel823",
+            "name": "itel825",
             "category": "Laptop",
             "price": 2563,
             "quantity": 2,
