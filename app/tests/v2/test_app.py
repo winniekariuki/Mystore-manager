@@ -78,19 +78,7 @@ class TestProducts(unittest.TestCase):
 
     
 
-    # def test_create_product(self):
-    #     product_data = json.dumps({
-    #         "name": "itel85280",
-    #         "category": "mobile",
-    #         "price": 2563,
-    #         "quantity": 2,
-    #         "lower_inventory": 10
-    #     })
-    #     response = self.test_client.post('api/v2/products', data=product_data,
-    #                                      content_type='application/json')
-    #     print(response.data)
-
-    #     self.assertEqual(response.status_code, 201)
+    # 
 
     # def test_login(self):
     #     login = json.dumps({
