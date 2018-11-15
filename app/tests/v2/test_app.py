@@ -68,7 +68,7 @@ class TestProducts(unittest.TestCase):
 
 
         self.create_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant, headers={
-                                                 'content-type': 'application/json', 'access_token': self.admin_token['token']})
+                                                 'content-type': 'application/json', 'access_token': self.admin_token})
         
         self.create_product = self.test_client.post('api/v2/products', data=product_data,
                                                     content_type='application/json')
