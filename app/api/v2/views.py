@@ -45,13 +45,7 @@ def token_required(f):
 
 class UserAccount(Resource):
     @expects_json(signup_schema)
-    @token_required
-    def post(user_data,self):
-        if user_data["role"] != "Admin":
-            return make_response(jsonify({
-                "message": "Not authorized"
-            }), 401)
-        
+    def post(self):
         data = request.get_json()
         username = data['username']
         email = data['email']
@@ -80,7 +74,7 @@ class UserAccount(Resource):
         admin.save_admin() 
         user1 = User(data)
         user1.save()
-        # users = user1.get_users()
+       
         return make_response(jsonify({
             "Status": "Ok",
             "Message": " registered successfully ",
@@ -125,13 +119,8 @@ class LoginUser(Resource):
 
 class Produce(Resource):
     @expects_json(product_schema)
-    @token_required
-    def post(user_data,self):
-        if user_data["role"] != "Admin":
-            return make_response(jsonify({
-                "message": "Not authorized"
-            }), 401)
-
+    def post(self):
+        
         data = request.get_json()
     
         name = data['name'].strip("")
@@ -159,12 +148,7 @@ class Produce(Resource):
 
 
 class Singleproduct(Resource):
-    @token_required
-    def put(user_data,self, id):
-        if user_data["role"] != "Admin":
-           return make_response(jsonify({
-               "message": "Not authorized"
-           }), 401)
+    def put(self, id):
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):
@@ -178,14 +162,9 @@ class Singleproduct(Resource):
         return make_response(jsonify({
         "Message": "Product does not exist"}), 404)
 
-
-    @token_required
-    def delete(user_data,self, id):
+    def delete(self, id):
         id=int(id)
-        if user_data["role"] != "Admin":
-                return make_response(jsonify({
-                    "message": "Not authorized"
-                }), 401)
+        
         self.product_ins = PostProduct.get_products(self)
         for product in self.product_ins:
             if int(product['id']) == int(id):

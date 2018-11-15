@@ -51,8 +51,7 @@ class TestProducts(unittest.TestCase):
         self.login_admin_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_admin, content_type='application/json')
 
-        # print(self.login_admin_user.data)
-
+        print(self.login_admin_user.data)
         self.admin_token = json.loads(
             self.login_admin_user.data.decode())
 
@@ -61,15 +60,10 @@ class TestProducts(unittest.TestCase):
 
         self.login_attendant_user = self.test_client.post(
             '/api/v2/auth/login', data=self.login_data_storeattendant, content_type='application/json')
-
         self.storeattendant_token = json.loads(
             self.login_attendant_user.data.decode())
         # print(self.login_attendant_user.data)
 
-
-        self.create_user = self.test_client.post('api/v2/auth/signup', data=users_data_storeattendant, headers={
-                                                 'content-type': 'application/json', 'access_token': self.admin_token})
-        
         self.create_product = self.test_client.post('api/v2/products', data=product_data,
                                                     content_type='application/json')
 
@@ -83,7 +77,6 @@ class TestProducts(unittest.TestCase):
         self.app_context.pop()
 
     
-
 
     # def test_create_product(self):
     #     product_data = json.dumps({
