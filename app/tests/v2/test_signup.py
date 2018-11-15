@@ -13,7 +13,7 @@ class Testsignup(TestProducts):
 
         user = json.dumps({
             "username": "Eliud",
-            "email": "eliud823@gmail.com",
+            "email": "eliud824@gmail.com",
             "password": "Bb#6060",
             "role": "storeattendant"
         })

@@ -9,7 +9,7 @@ from app.tests.v2.test_app import *
 class TestGood(TestProducts):
     def test_create_product(self):
         product_data = json.dumps({
-            "name": "itel823",
+            "name": "itel824",
             "category": "mobile",
             "price": 2563,
             "quantity": 2,
